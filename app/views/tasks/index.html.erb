@@ -1,7 +1,30 @@
-<h1>Tasks</h1>
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= link_to task.title, task_path(task) %></li>
-  <% end %>
+<div class="container text-center justify-content-center">
+  <h1 class = "text-center">Tasks</h1>
+  <p><%= link_to 'create new task', new_task_path, class: "btn btn-primary" %></p>
+</div>
+
+  <% @tasks.each_slice(3) do |task_row| %>
+    <div class="row">
+    <% task_row.each do |task| %>
+      <div class="col">
+        <a href=<%=task_path(task)%> class = "text-decoration-none">
+          <div class="card mb-3 px-1 shadow" style = "height: 120px; overflow: hidden">
+            <div class="card-body mh-100">
+              <h5 class="card-title text-center">
+                <%=task.title%>
+              </h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">
+                <%= "NOT " unless task.completed %>completed
+              </h6>
+              <p class="card-text text-dark text-sm">
+                <%= task.details %>
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
 </ul>
-<p><%= link_to 'create new task', new_task_path, class: "btn btn-primary" %></p>
