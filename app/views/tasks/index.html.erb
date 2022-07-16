@@ -9,13 +9,10 @@
       <div class="col">
         <a href=<%=task_path(task)%> class = "text-decoration-none">
           <div class="card mb-3 px-1 shadow" style = "height: 120px; overflow: hidden">
-            <div class="card-body mh-100">
+            <div class="card-body mh-100 d-flex flex-column justify-content-around align-items-center">
               <h5 class="card-title text-center">
-                <%=task.title%>
+                <%= task.completed ? '✅' : '⏹️' %><%= task.title %>
               </h5>
-              <h6 class="card-subtitle mb-2 text-muted text-center">
-                <%= "NOT " unless task.completed %>completed
-              </h6>
               <p class="card-text text-dark text-sm">
                 <%= task.details %>
               </p>
